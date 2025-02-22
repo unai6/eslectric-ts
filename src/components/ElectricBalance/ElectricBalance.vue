@@ -28,7 +28,7 @@ const period = ref<Period>('day')
 const chartData = computed(() => {
   if (!energyData.value.length) return { labels: [], datasets: [] }
 
-  const labels = energyData.value[0]?.attributes.values.map(v => formatDateByPeriod(v.datetime, period.value)) || []
+  const labels = energyData.value[0]?.attributes.values.map(v => getFormattedDateByPeriod(v.datetime, period.value)) || []
 
   return {
     labels,
@@ -47,7 +47,7 @@ const chartData = computed(() => {
 
 const chartOptions = getDefaultChartOptions({ title: 'Balance eléctrico', yTitle: 'Energía (MWh)', xTitle: 'Fecha' })
 
-function formatDateByPeriod (datetime: string, period: Period): string {
+function getFormattedDateByPeriod (datetime: string, period: Period): string {
   switch (period) {
   case 'day':
     return dayjs(datetime).format('DD/MM/YYYY')
