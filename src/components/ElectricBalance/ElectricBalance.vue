@@ -28,7 +28,6 @@ const period = ref<Period>('day')
 const chartData = computed(() => {
   if (!energyData.value.length) return { labels: [], datasets: [] }
 
-  // Get all unique dates from the first energy type.
   const labels = energyData.value[0]?.attributes.values.map(v => formatDateByPeriod(v.datetime, period.value)) || []
 
   return {
