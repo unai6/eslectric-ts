@@ -1,0 +1,1 @@
+Project aiming to create a UI for the spanish electrical net API. The API is provided by the spanish electrical net operator, Red Eléctrica de España. The API provides information about the electrical net, such as the current electrical production, the current electrical consumption, the current electrical price, etc. The API is available at https://www.ree.es/es/datos/apidatos
