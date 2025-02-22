@@ -120,6 +120,8 @@ async function fetchElectricBalance(timeTrunc: Period = 'day'): Promise<void> {
 onMounted(async () => {
   await fetchElectricBalance('day')
 })
+
+const isMobile = ref(window.innerWidth < 768)
 </script>
 
 <template>
@@ -127,7 +129,7 @@ onMounted(async () => {
     <div class="h-[500px]">
       <Chart
         type="bar"
-        :height=400
+        :height="isMobile ? 400 : 100"
         :data="chartData"
         :options="chartOptions"
       />
