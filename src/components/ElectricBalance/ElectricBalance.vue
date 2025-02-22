@@ -45,7 +45,13 @@ const chartData = computed(() => {
   }
 })
 
-const chartOptions = getDefaultChartOptions({ title: 'Balance eléctrico', yTitle: 'Energía (MWh)', xTitle: 'Fecha' })
+const chartOptions = getDefaultChartOptions({
+  title: 'Balance eléctrico',
+  yTitle: 'Energía (MWh)',
+  xTitle: 'Fecha',
+  responsive: true,
+  maintainAspectRatio: true,
+})
 
 function getFormattedDateByPeriod (datetime: string, period: Period): string {
   switch (period) {
@@ -117,7 +123,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="electric-balance">
-    <Chart type="bar" :data="chartData" :options="chartOptions" />
+  <div class="h-full w-full p-4">
+    <div class="h-[500px]">
+      <Chart
+        type="bar"
+        :height=400
+        :data="chartData"
+        :options="chartOptions"
+      />
+    </div>
   </div>
 </template>

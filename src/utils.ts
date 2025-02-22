@@ -1,40 +1,51 @@
-/**
- * Generates the default chart options for a chart.
- *
- * @param {Object} params - The parameters for the chart options.
- * @param {string} params.title - The title of the chart.
- * @param {string} params.yTitle - The title for the y-axis.
- * @param {string} params.xTitle - The title for the x-axis.
- * @returns {Object} The default chart options.
- */
-export function getDefaultChartOptions ({ title, yTitle, xTitle }: { title: string, yTitle: string, xTitle: string }): { responsive: boolean; maintainAspectRatio: boolean; plugins: { legend: { position: string; labels: { usePointStyle: boolean; }; }; title: { display: boolean; text: string; }; }; scales: { y: { beginAtZero: boolean; title: { display: boolean; text: string; }; }; x: { title: { display: boolean; text: string; }; }; }; } {
+export function getDefaultChartOptions(
+  { title, yTitle, xTitle, responsive, maintainAspectRatio }: { title: string, yTitle: string, xTitle: string, responsive: boolean, maintainAspectRatio: boolean },
+) {
   return {
-    responsive: true,
-    maintainAspectRatio: true,
+    responsive,
+    maintainAspectRatio,
     plugins: {
       legend: {
-        position: 'top',
+        position: window.innerWidth < 768 ? 'bottom' : 'top',
         labels: {
-          usePointStyle: true
+          usePointStyle: true,
+          boxWidth: window.innerWidth < 768 ? 8 : 12,
+          font: {
+            size: window.innerWidth < 768 ? 10 : 12
+          }
         }
       },
       title: {
         display: true,
         text: title,
+        font: {
+          size: window.innerWidth < 768 ? 14 : 16
+        }
       }
     },
     scales: {
       y: {
         beginAtZero: true,
         title: {
-          display: true,
+          display: window.innerWidth >= 768,
           text: yTitle
+        },
+        ticks: {
+          font: {
+            size: window.innerWidth < 768 ? 10 : 12
+          }
         }
       },
       x: {
         title: {
-          display: true,
+          display: window.innerWidth >= 768,
           text: xTitle
+        },
+        ticks: {
+          font: {
+            size: window.innerWidth < 768 ? 10 : 12
+          },
+          maxRotation: window.innerWidth < 768 ? 45 : 0
         }
       }
     }
